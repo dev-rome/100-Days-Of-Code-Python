@@ -25,28 +25,21 @@
             
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-# direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-# text = input("Type your message:\n").lower()
-# shift = int(input("Type the shift number:\n"))
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+text = input("Type your message:\n").lower()
+shift = int(input("Type the shift number:\n"))
 
-def encrypt(text, shift):
-    new_str = ""
-    for letter in text:
-        current_index =  alphabet.index(letter)
-        new_index = (current_index + shift) % len(alphabet)
-        shift_letters = alphabet[new_index] 
-        new_str += shift_letters
-        print(new_str) 
-        
-encrypt("hello", 5)
-
-def decrypt(text, shift):
+def caesar(text, shift, direction):
   new_str = ""
   for letter in text:
     current_index = alphabet.index(letter)
-    new_index = (current_index - shift) % len(alphabet)
-    shift_letter = alphabet[new_index]
-    new_str += shift_letter
-    print(new_str)
+    if direction == "encode":
+      new_index = (current_index + shift) % len(alphabet)
+    elif direction == "decode":
+      new_index = (current_index - shift) % len(alphabet)
     
-decrypt("mjqqt", 5)
+    shift_letters = alphabet[new_index]
+    new_str += shift_letters
+  print(new_str)
+    
+caesar(text, shift, direction)
